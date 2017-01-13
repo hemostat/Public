@@ -11,7 +11,7 @@
 
 <meta name="author" content="Andrey Ziyatdinov" />
 
-<meta name="date" content="2017-01-11" />
+<meta name="date" content="2017-01-13" />
 
 <title>Compare OLS and LMM in GWAS simulations</title>
 
@@ -119,7 +119,7 @@ $(document).ready(function () {
 
 <h1 class="title toc-ignore">Compare OLS and LMM in GWAS simulations</h1>
 <h4 class="author"><em>Andrey Ziyatdinov</em></h4>
-<h4 class="date"><em>2017-01-11</em></h4>
+<h4 class="date"><em>2017-01-13</em></h4>
 
 </div>
 
@@ -234,6 +234,7 @@ $(document).ready(function () {
 </div>
 <div id="explanation-of-the-tendencies" class="section level1">
 <h1><span class="header-section-number">4</span> Explanation of the tendencies</h1>
+<p>What tendencies have we observed on the previous figures?</p>
 <ol style="list-style-type: decimal">
 <li>The effect variance is the lowest for OLS comparing with GLS and LMM.</li>
 <li>The effect variance somehow depend on the heritability or variance explained by genes.</li>
@@ -252,9 +253,9 @@ $(document).ready(function () {
 <thead>
 <tr class="header">
 <th>Study</th>
-<th>Model</th>
-<th>Genotype <span class="math inline">\(g\)</span></th>
-<th>Variance of <span class="math inline">\(\hat{\beta_g}\)</span></th>
+<th>var(y)</th>
+<th>var(g)</th>
+<th>var(beta)</th>
 <th>Approximation</th>
 <th>Upper Bound</th>
 <th></th>
@@ -262,35 +263,46 @@ $(document).ready(function () {
 </thead>
 <tbody>
 <tr class="odd">
-<td>Independent samples</td>
-<td><span class="math inline">\(y \sim (\mu + \beta_g g, \sigma_e^2 I)\)</span></td>
-<td><span class="math inline">\(g \sim (pq, 2pq I)\)</span></td>
-<td><span class="math inline">\(\frac{\sigma_e^2}{g_c^T g_c}\)</span></td>
-<td><span class="math inline">\(\frac{\sigma_e^2}{2pq N}\)</span></td>
+<td>(Pooled) Independent</td>
+<td><span class="math inline">\(\sigma_g^2 I + \sigma_r^2 I = \sigma_r^{*2} I\)</span></td>
+<td><span class="math inline">\(2pq I\)</span></td>
+<td><span class="math inline">\(\frac{\hat{\sigma}_r^{*2}}{g_c^T g_c}\)</span></td>
+<td><span class="math inline">\(\frac{\hat{\sigma}_r^{*2}}{2pq N} \approx \frac{1}{2pq N}\)</span></td>
 <td></td>
 <td></td>
 </tr>
 <tr class="even">
 <td>Common random effect</td>
-<td><span class="math inline">\(y \sim (\mu + \beta_g g, \sigma_f^2 F + \sigma_e^2 I)\)</span></td>
-<td><span class="math inline">\(g \sim (pq, 2pq I)\)</span></td>
+<td><span class="math inline">\(\sigma_f^2 F + \sigma_r^2 I\)</span></td>
+<td><span class="math inline">\(2pq I\)</span></td>
 <td><span class="math inline">\(\frac{1}{g_c^T \hat{V}^{-1} g_c}\)</span></td>
 <td><span class="math inline">\(\frac{1}{2pq \mbox { } trace(\hat{V}^{-1})}\)</span></td>
-<td><span class="math inline">\(\frac{\sigma_g^2 + \sigma_e^2}{2pq N} = \frac{1}{2pq N}\)</span></td>
+<td><span class="math inline">\(\frac{\hat{\sigma}_g^2 + \hat{\sigma}_r^2}{2pq N} \approx \frac{1}{2pq N}\)</span></td>
 <td></td>
 </tr>
 <tr class="odd">
 <td>Genetic random effect</td>
-<td><span class="math inline">\(y \sim (\mu + \beta_g g, \sigma_g^2 K + \sigma_e^2 I)\)</span></td>
-<td><span class="math inline">\(g \sim (pq, 2pq K)\)</span></td>
+<td><span class="math inline">\(\sigma_g^2 K + \sigma_r^2 I\)</span></td>
+<td><span class="math inline">\(2pq K\)</span></td>
 <td><span class="math inline">\(\frac{1}{g_c^T \hat{V}^{-1} g_c}\)</span></td>
 <td><span class="math inline">\(\frac{1}{2pq \mbox { } trace(\hat{V}^{-1}K)}\)</span></td>
-<td><span class="math inline">\(\frac{(\sum{\lambda_K}/N) \sigma_g^2 + \sigma_e^2}{2pq N}\)</span></td>
+<td><span class="math inline">\(\frac{(\sum{\lambda^{-1}_K}/N) \hat{\sigma}_g^2 + \hat{\sigma}_r^2}{2pq N}\)</span></td>
 <td></td>
 </tr>
 </tbody>
 </table>
-<p><em>Conclusion</em>: the factor of relative difference between OLS and LMM is equal to the trace value divided by <span class="math inline">\(N\)</span>.</p>
+<p>Notes</p>
+<ul>
+<li>In the current status of this report, we present experiments only for the situation given on the 1st and 3rd rows of the table.
+<ul>
+<li>It would be interesting to conduct an experiment for the 2nd row, i.e. “Common random effect”.</li>
+<li>Results expected for “Common random effect” will be opposite to “Genetic random effect”, as suggest both, derivations in the table above and table in the further section <a href="#lmm-common-variance-family-effect">4.2</a>.</li>
+</ul></li>
+</ul>
+<p>What can we conclude from the table with formulas given above?</p>
+<ul>
+<li>The factor of relative difference between OLS (row 1) and LMM (both row 2 Common and row 3 Genetic random effect) is equal to the trace value divided by <span class="math inline">\(N\)</span>.</li>
+</ul>
 <div id="lmm-genetic-random-effect" class="section level2">
 <h2><span class="header-section-number">4.1</span> LMM: genetic random effect</h2>
 <p>The effect variance estimated by LMM varies with <code>var_explained</code> parameter. See Figures in Sections <a href="#variance-of-the-effect">2.1</a> (under the null) and <a href="#variance-of-the-effect-1">3.1</a> (under the alternative).</p>
@@ -362,6 +374,12 @@ $(document).ready(function () {
 <div id="conclusions" class="section level2">
 <h2><span class="header-section-number">4.3</span> Conclusions</h2>
 <ul>
+<li>Empirically, we observed that the factor <code>trace_transform_by_n</code> is
+<ul>
+<li>less than 1 for Genetic random effect (that means pooling samples increases the effect variance – a bad thing)</li>
+<li>greater than 1 for Common random effect (that means pooling samples decreases the effect variance – a good thing)</li>
+</ul></li>
+<li>In the Common random effect Scenario, using the upper bound for the exact solution for effect variance, we have shown that pooling samples always decreases the effect variance and improves the power – a good thing.</li>
 <li>The discrapency between the exact computation of effect variance and its upper bound is increasing when the heritability is increasing.
 <ul>
 <li>With the heritability is increasing, approximation using the upper bound of the effect variance is getting worse.</li>
