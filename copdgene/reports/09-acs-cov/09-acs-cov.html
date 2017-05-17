@@ -186,16 +186,16 @@ vf </code></pre>
 <h2><span class="header-section-number">3.1</span> Without global acs</h2>
 <p>Fitted to the first 200 ind.:</p>
 <pre class="r"><code>mod3 &lt;- relmatLmer(FEV1_FVC_utah ~ Age_Enroll + Age_Enroll2 + gender + 
-  SmokCigNow + ATS_PackYears + acs_global + (1 | ccenter) + (1|sid), phen[1:200, ],
+  SmokCigNow + ATS_PackYears + (1 | ccenter) + (1|sid), phen[1:200, ],
   relmat = list(sid = arm))</code></pre>
-<pre class="r"><code>vf &lt;- as.data.frame(VarCorr(mod2))[, c(&quot;grp&quot;, &quot;vcov&quot;)]
+<pre class="r"><code>vf &lt;- as.data.frame(VarCorr(mod3))[, c(&quot;grp&quot;, &quot;vcov&quot;)]
 vf$prop &lt;- with(vf, vcov / sum(vcov))
-
+ 
 vf </code></pre>
 <pre><code>       grp        vcov       prop
-1      sid 0.006787867 0.25084512
-2  ccenter 0.001795253 0.06634344
-3 Residual 0.018476871 0.68281144</code></pre>
+1      sid 0.007158257 0.26164187
+2  ccenter 0.001753097 0.06407756
+3 Residual 0.018447636 0.67428058</code></pre>
 </div>
 </div>
 <div id="arm-and-global-acs" class="section level1">
