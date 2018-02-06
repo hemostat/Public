@@ -9,9 +9,9 @@
 <meta name="generator" content="pandoc" />
 
 
-<meta name="author" content="Andrey Ziyatdinov" />
+<meta name="author" content="Andrey Ziyatdinov et al." />
 
-<meta name="date" content="2018-02-02" />
+<meta name="date" content="2018-02-06" />
 
 <title>Technical note: Admixed mapping in African Americans for detection of gene-by-environment interactions</title>
 
@@ -119,8 +119,8 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Technical note: Admixed mapping in African Americans for detection of gene-by-environment interactions</h1>
-<h4 class="author"><em>Andrey Ziyatdinov</em></h4>
-<h4 class="date"><em>2018-02-02</em></h4>
+<h4 class="author"><em>Andrey Ziyatdinov et al.</em></h4>
+<h4 class="date"><em>2018-02-06</em></h4>
 
 </div>
 
@@ -186,6 +186,14 @@ $(document).ready(function () {
 <h2>Statistical analysis</h2>
 <p><strong>Selection bias in COPDGene</strong>: According to the COPDGene study protocol, participants needed to have a smoking history at least 10 pack-years. That means that all participants are ever smokers, who were either current non-smoker or current smoker at the moment of recruitment. Consequently, the effect of the current smoking status was associated with improved lung function (reverse causation phenomenon). Additionally, the dataset was enriched for the patients with COPD.</p>
 <p><strong>Five quantitative traits:</strong> We modeled five spirometric measures of lung function: forced expiratory volume in one second (<code>FEV1</code>); forced expiratory volume in one second as a percent of predicted (<code>FEV1pp</code>); forced vital capacity (<code>FVC</code>); forced vital capacity as a percent of predicted (<code>FVCpp</code>); and the ratio of forced expiratory volume in one second to forced vital capacity (<code>FEV1_FVC</code>). We did not analyzed the binary outcome of the COPD disease status, due to overall complexity of its modeling at the initial phase of the analysis.</p>
+<ul>
+<li><code>FEV1</code>: forced expiratory volume in one second; measured as the amount of air forcefully exhaled in one second;</li>
+<li><code>FEV1pp</code>: forced expiratory volume in one second as a percent of predicted; calculated using race and gender-specific regression models based on age, age squared and height squared <span class="citation">(Hankinson, Odencrantz, and Fedan 1999)</span>;</li>
+<li><code>FVC</code>: forced vital capacity (FVC); calculated similarly to <code>FEV1</code>, but the maximal exhalation lasts 6 seconds or greater;</li>
+<li><code>FVCpp</code>: forced vital capacity as a percent of predicted; calculated (similary to <code>FEV1pp</code>) using race and gender-specific regression models based on age, age squared and height squared <span class="citation">(Hankinson, Odencrantz, and Fedan 1999)</span>;</li>
+<li><code>FEV1_FVC</code>: the ratio of forced expiratory volume in one second to forced vital capacity; the ratio determines the airflow obstruction when <code>FVCpp</code> values are below 0.7 <span class="citation">(Vestbo et al. 2013)</span>.</li>
+</ul>
+<p>All trait measurements were post-bronchodilator measurements obtained by the NDD EasyOne Spirometer (Zurich, Switzerland).</p>
 <p><strong>Two binary environmental exposures:</strong> We used two binary (current smoking status) environmental exposures derived based on the number of cigarettes per day. We considered three levels of this status: not a current smoker, current moderate smoker (1-14 cigarettes per day) and current heavy smoker (&gt;14 cigarettes per day). The two exposures were referred to as current smoker exposure (current smokers <em>vs.</em> not current smokers; the <code>SmokCigNow</code> variable) and current heavy smoker exposure (current heavy smokers <em>vs.</em> current moderate smokers; the <code>SmokCigNow0_15</code> variable). We considered only binary exposures because of complexity of the proposed statistical model (the <span class="math inline">\(u_i\)</span> term in the equation given below is well defined for binary/categorical exposures <span class="citation">(Sul et al. 2016)</span>). Additionally, we excluded individuals in the current non-smoker group when conducting gene-by-environment scan using the current heavy smoker exposure. In total, we sought to perform 10 gene-by-environment interaction scans: all pairs between two binary exposures and five traits.</p>
 <table>
 <colgroup>
@@ -273,6 +281,7 @@ $(document).ready(function () {
 <th align="center">exposure</th>
 <th align="center">mpval</th>
 <th align="center">top_trait</th>
+<th align="center">spval</th>
 </tr>
 </thead>
 <tbody>
@@ -284,6 +293,7 @@ $(document).ready(function () {
 <td align="center">SmokCigNow</td>
 <td align="center">2.79e-05</td>
 <td align="center">FEV1pp_utah</td>
+<td align="center">5.86e-06</td>
 </tr>
 <tr class="even">
 <td align="center">2</td>
@@ -293,6 +303,7 @@ $(document).ready(function () {
 <td align="center">SmokCigNow0_15</td>
 <td align="center">9.81e-06</td>
 <td align="center">FEV1_utah</td>
+<td align="center">2.80e-03</td>
 </tr>
 </tbody>
 </table>
@@ -307,6 +318,7 @@ $(document).ready(function () {
 <th align="center">exposure</th>
 <th align="center">mpval</th>
 <th align="center">top_trait</th>
+<th align="center">spval</th>
 </tr>
 </thead>
 <tbody>
@@ -318,6 +330,7 @@ $(document).ready(function () {
 <td align="center">SmokCigNow0_15</td>
 <td align="center">3.70e-05</td>
 <td align="center">FVC_utah</td>
+<td align="center">2.06e-06</td>
 </tr>
 <tr class="even">
 <td align="center">4</td>
@@ -326,7 +339,8 @@ $(document).ready(function () {
 <td align="center">32,256,475</td>
 <td align="center">SmokCigNow0_15</td>
 <td align="center">4.61e-05</td>
-<td align="center">FEV1pp_utah</td>
+<td align="center">FEV1_utah</td>
+<td align="center">5.62e-03</td>
 </tr>
 <tr class="odd">
 <td align="center">5</td>
@@ -336,6 +350,7 @@ $(document).ready(function () {
 <td align="center">SmokCigNow0_15</td>
 <td align="center">9.49e-05</td>
 <td align="center">FVCpp_utah</td>
+<td align="center">1.73e-04</td>
 </tr>
 <tr class="even">
 <td align="center">6</td>
@@ -345,19 +360,24 @@ $(document).ready(function () {
 <td align="center">SmokCigNow0_15</td>
 <td align="center">2.57e-04</td>
 <td align="center">FVC_utah</td>
+<td align="center">2.37e-01</td>
+</tr>
+<tr class="odd">
+<td align="center">7</td>
+<td align="center">1</td>
+<td align="center">248,020,448</td>
+<td align="center">249,208,153</td>
+<td align="center">SmokCigNow</td>
+<td align="center">3.21e-04</td>
+<td align="center">FEV1_FVC_utah</td>
+<td align="center">2.94e-03</td>
 </tr>
 </tbody>
 </table>
 </div>
 <div id="r-code-example" class="section level2">
 <h2>R code example</h2>
-<pre class="r"><code>library(devtools)
-load_all(&quot;~/git/hemostat/copdgene&quot;)
-load_all(&quot;~/git/variani/matlm&quot;)
-
-library(gaston)</code></pre>
-<pre class="r"><code>phen &lt;- copdgene_phen(progress = FALSE)
-ids_phen &lt;- phen$sid</code></pre>
+<p>R code to run the admixed mapping analysis on the COPDGene dataset is available on <a href="https://gist.github.com/variani/a28c18797c39a62bacab587e6e708529" class="uri">https://gist.github.com/variani/a28c18797c39a62bacab587e6e708529</a>.</p>
 </div>
 </div>
 <div id="admixed-mapping-in-replication-dataset" class="section level1">
@@ -385,6 +405,9 @@ ids_phen &lt;- phen$sid</code></pre>
 <div id="ref-Davis2016">
 <p>Davis, Joe R., Laure Fresard, David A. Knowles, Mauro Pala, Carlos D. Bustamante, Alexis Battle, and Stephen B. Montgomery. 2016. “An Efficient Multiple-Testing Adjustment for eQTL Studies that Accounts for Linkage Disequilibrium between Variants.” <em>American Journal of Human Genetics</em> 98 (1). The American Society of Human Genetics: 216–24. doi:<a href="https://doi.org/10.1016/j.ajhg.2015.11.021">10.1016/j.ajhg.2015.11.021</a>.</p>
 </div>
+<div id="ref-Hankinson1999">
+<p>Hankinson, John L, John R Odencrantz, and Kathleen B Fedan. 1999. “Spirometric Reference Values from a Sample of the General Us Population.” <em>American Journal of Respiratory and Critical Care Medicine</em> 159 (1). Am Thoracic Soc: 179–87.</p>
+</div>
 <div id="ref-Parker2014">
 <p>Parker, Margaret M., Marilyn G. Foreman, Haley J. Abel, Rasika A. Mathias, Jacqueline B. Hetmanski, James D. Crapo, Edwin K. Silverman, and Terri H. Beaty. 2014. “Admixture mapping identifies a quantitative trait locus associated with FEV1/FVC in the COPDGene Study.” <em>Genetic Epidemiology</em> 38 (7): 652–59. doi:<a href="https://doi.org/10.1002/gepi.21847">10.1002/gepi.21847</a>.</p>
 </div>
@@ -399,6 +422,9 @@ ids_phen &lt;- phen$sid</code></pre>
 </div>
 <div id="ref-lampld">
 <p>The LAMP-LD authors. 2017. Personal Communication.</p>
+</div>
+<div id="ref-Vestbo2013">
+<p>Vestbo, Jørgen, Suzanne S Hurd, Alvar G Agustí, Paul W Jones, Claus Vogelmeier, Antonio Anzueto, Peter J Barnes, et al. 2013. “Global Strategy for the Diagnosis, Management, and Prevention of Chronic Obstructive Pulmonary Disease: GOLD Executive Summary.” <em>American Journal of Respiratory and Critical Care Medicine</em> 187 (4). Am Thoracic Soc: 347–65.</p>
 </div>
 <div id="ref-Zaitlen2014">
 <p>Zaitlen, Noah, Bogdan Pasaniuc, Sriram Sankararaman, Gaurav Bhatia, Jianqi Zhang, Alexander Gusev, Taylor Young, et al. 2014. “Leveraging population admixture to characterize the heritability of complex traits.” <em>Nature Genetics</em> 46 (12). Nature Publishing Group: 1356–62. doi:<a href="https://doi.org/10.1038/ng.3139">10.1038/ng.3139</a>.</p>
