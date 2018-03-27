@@ -196,21 +196,21 @@ $(document).ready(function () {
 </thead>
 <tbody>
 <tr class="odd">
-<td>Smoking effects</td>
+<td>Smoking effects on probe</td>
 <td>484,125</td>
 <td>525</td>
 <td>0.108%</td>
 <td>1e-7</td>
 </tr>
 <tr class="even">
-<td>Interaction effects</td>
+<td>Interaction SNPxSmoking cis-mQTL</td>
 <td>126,369,511</td>
 <td>827</td>
 <td>0.0065%</td>
 <td>3.96e-10</td>
 </tr>
 <tr class="odd">
-<td>Interaction effects</td>
+<td>Interaction SNPxSmoking trans-mQTL</td>
 <td>195,068,554,297</td>
 <td>448,242</td>
 <td>0.00023%</td>
@@ -220,7 +220,12 @@ $(document).ready(function () {
 </table>
 <ul>
 <li>1M window for cis-effects. Otherwise, trans-effects.</li>
-<li>The outcome is methylation</li>
+<li>The outcome is methylation probes (CpG islands).</li>
+</ul>
+<p>Limitations:</p>
+<ul>
+<li>The individuals are elderly individuals of European ancestry.</li>
+<li>The methylation arrays is not state-of-the art.</li>
 </ul>
 <div id="tables-of-methylation-annotations" class="section level3">
 <h3><span class="header-section-number">1.2.1</span> Tables of methylation annotations</h3>
