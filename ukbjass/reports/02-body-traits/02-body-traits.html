@@ -342,6 +342,12 @@ $(document).ready(function () {
 <div id="about" class="section level1">
 <h1><span class="header-section-number">1</span> About</h1>
 <p>Project code repository: <a href="https://github.com/hemostat/ukbjass" class="uri">https://github.com/hemostat/ukbjass</a>.</p>
+<p>Shared single-trait summary stats and LDSC results at <code>o2.hms.harvard.edu</code>:</p>
+<pre><code>ls /home/az99//income/ukbjass/
+body_BMIz_orth.annot.sumstats.gz     body_WEIGHT_orth.annot.sumstats.gz
+body_HEIGHTz_orth.annot.sumstats.gz  body_WHR_orth.annot.sumstats.gz
+body_HIP_orth.annot.sumstats.gz      h2.ldsc.rds
+body_WAIST_orth.annot.sumstats.gz    rho.ldsc.rdata</code></pre>
 </div>
 <div id="summary" class="section level1">
 <h1><span class="header-section-number">2</span> Summary</h1>
@@ -394,7 +400,7 @@ $(document).ready(function () {
 <ul>
 <li>compute LD-scores for our SNPs using 1,000 Genomes reference panel of <code>EUR</code>;
 <ul>
-<li>unexpectedly, there are only approx. 100,000/600,000 HapMap 3 SNPs;</li>
+<li>unexpectedly, there are only approx. 100,000/600,000 HapMap 3 SNPs in our sample;</li>
 </ul></li>
 <li>run bi-variate LDSC to estimate <span class="math inline">\(\rho\)</span> parameter;</li>
 <li>run uni-variate LDSC to asses the population stratification.</li>
