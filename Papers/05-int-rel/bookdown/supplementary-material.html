@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="index.html">
-<link rel="next" href="supplementary-material.html">
+<link rel="prev" href="manuscript.html">
+<link rel="next" href="references.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -166,130 +166,80 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="manuscript" class="section level1">
-<h1><span class="header-section-number">1</span> Manuscript</h1>
-<p><strong>Title</strong>: Statistical power in GWAS revisited: sample size, genetic relatedness, and gene-by-environment interactions</p>
-<p><strong>Abstract</strong>:
-Genome-wide association studies (GWAS) have identified
-thousands of genetic variants associated with complex diseases and 
-heavily rely on increasing the sample size.
-Recent analyses of biobank-scale genetic data suggest:
-(i) inclusion of genetically related individuals empowers GWAS <span class="citation">(Loh et al. <a href="#ref-loh2018mixed">2018</a>)</span>;
-(ii) the wealth of collected environmental exposures has potential
-to uncover gene-by-environmental interactions <span class="citation">(Young, Wauthier, and Donnelly <a href="#ref-young2016multiple">2016</a>)</span>.
-However, quantification of GWAS power — 
-the non-centrality parameter (<span class="math inline">\(NCP\)</span>) of association test,
-which is proportional to the sample size (<span class="math inline">\(n\)</span>) and the variance explained by genetic variant (<span class="math inline">\(q^2\)</span>) — 
-holds only for unrelated individuals.
-Here, we first expanded it by incorporating individual relationships by linear mixed model.
-We next studied gene-by-environment interactions,
-where interaction effect on trait is tested in the presence of marginal genetic effect.
-<!-- results/conclusions -->
-In result, the derived formulas have a range of implications.
-For testing marginal genetic effect, one can quickly assess the power in studies involving related individuals. Because of the potential gain in power for testing gene-by-environment interaction, the formula for interactions will allow optimization of the study design of related individuals.</p>
-<div id="methods-and-analytical-derivations" class="section level2">
-<h2><span class="header-section-number">1.1</span> Methods and Analytical Derivations</h2>
-<div id="association-model" class="section level3">
-<h3><span class="header-section-number">1.1.1</span> Association model</h3>
-<span class="math display" id="eq:assoc">\[\begin{equation} 
-  y \sim (X \beta, V) = (\mu + \beta_x x, \sum{\sigma_i^2 R_i} + \sigma_r^2 I)
-\tag{1.1}
-\end{equation}\]</span>
+<div id="supplementary-material" class="section level1">
+<h1><span class="header-section-number">2</span> Supplementary Material</h1>
+<div id="simulations" class="section level2">
+<h2><span class="header-section-number">2.1</span> Simulations</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">source</span>(<span class="st">&quot;R/run/01-par.R&quot;</span>)</a></code></pre></div>
+<div id="unrelated-marginal-genetic-effect" class="section level3">
+<h3><span class="header-section-number">2.1.1</span> Unrelated: marginal genetic effect</h3>
+<p><img src="bookdown_files/figure-html/se_unrel_marginal-1.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="testing-marginal-genetic-effect" class="section level3">
-<h3><span class="header-section-number">1.1.2</span> Testing marginal genetic effect</h3>
-<p>Consider a set of related individuals, which relatedness is expressed by the kinship matrix (<span class="math inline">\(K\)</span>), 
-and association between outcome (<span class="math inline">\(y\)</span>) and genotype (<span class="math inline">\(g\)</span>) is evaluated by linear mixed model.
-For a given phenotypic variance-covariance matrix (<span class="math inline">\(V\)</span>),
-we show that the non-centrality parameter for marginal association test can be approximated as following:</p>
-<span class="math display" id="eq:NCPrel">\[\begin{equation} 
-  NCP = \hat{\beta}_g^2 / var(\hat{\beta}_g) \approx \hat{\beta}_g^2 tr( \hat{V}^{-1} \Sigma_g)
-\tag{1.2}
-\end{equation}\]</span>
-<p> 
-where <span class="math inline">\(tr\)</span> is the trace operator and <span class="math inline">\(\Sigma_g\)</span> is the covariance matrix of genotypes.</p>
-<p>For families we have <span class="math inline">\(V = \sigma_k^2 K + \sigma_r^2 I\)</span> and <span class="math inline">\(\Sigma_g = \sigma_g^2 K\)</span>,
-that results in following:</p>
-<span class="math display" id="eq:NCPrelfam">\[\begin{equation} 
-  NCP_{fam} = q^2 tr( (\sigma_k^2 K + \sigma_r^2 I)^{-1} K ) 
-\tag{1.3}
-\end{equation}\]</span>
-<p>That means <span class="math inline">\(NCP_{rel} \leq NCP\)</span>, i.e. for the same sample size,
-power is expected to decrease as relatedness between individuals increases —
-which was previously shown analytically only for sib-pairs in (Visscher et al., 2008).</p>
-</div>
-<div id="testing-gene-environment-interaction-effect" class="section level3">
-<h3><span class="header-section-number">1.1.3</span> Testing gene-environment interaction effect</h3>
-<p>Further, we consider testing for fixed effect gene-by-environment interaction in related individuals. We have derived NCPrel+int=tr(V-1Σint), where Σint is the covariance matrix in distribution of the interaction variable. For families we have V= [h2K+I], Σint=q2w2Kint, where w2=f(1–f) and f is the frequency of binary exposure. Kint is a matrix derived from K and depends on realization of exposure in a given study. We argue that Kint is different from the matrix recently proposed in (Sul et al., 2016). We validated all results by simulations.</p>
-<span class="math display" id="eq:NCPrelint">\[\begin{equation} 
-  NCP_{rel+int} = \beta_{int}^2 tr( \hat{V}^{-1} \Sigma_{int})
-\tag{1.4}
-\end{equation}\]</span>
-</div>
-</div>
-<div id="results" class="section level2">
-<h2><span class="header-section-number">1.2</span> Results</h2>
-<div id="summary-on-analytical-results" class="section level3">
-<h3><span class="header-section-number">1.2.1</span> Summary on analytical results</h3>
+<div id="families-marginal-genetic-effect" class="section level3">
+<h3><span class="header-section-number">2.1.2</span> Families: marginal genetic effect</h3>
+<p><img src="bookdown_files/figure-html/se_fam_marginal-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <table>
-<caption><span id="tab:assoc-gen">Table 1.1: </span> Comparison of study designs to detect marginal genetic association.</caption>
-<colgroup>
-<col width="25%" />
-<col width="25%" />
-<col width="25%" />
-<col width="25%" />
-</colgroup>
 <thead>
 <tr class="header">
-<th>Study</th>
-<th>Model <span class="math inline">\(y \sim (X \beta, V)\)</span></th>
-<th>Genotype <span class="math inline">\(x_g\)</span></th>
-<th>Variance of <span class="math inline">\(\hat{\beta_g}\)</span></th>
+<th align="left">Sample Size</th>
+<th align="right">Trace Factor</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Unrelated</td>
-<td><span class="math inline">\(y \sim (\mu + \beta_g x_g, \sigma_r^2 I)\)</span></td>
-<td><span class="math inline">\(x_g \sim (\mu_g, \sigma_g^2 I)\)</span></td>
-<td><span class="math inline">\(\frac{\sigma_r^2}{\tilde{x_g}^T \tilde{x_g}} \approx \frac{\sigma_r^2}{\sigma_g^2 N }\)</span></td>
+<td align="left">100</td>
+<td align="right">0.8253</td>
 </tr>
 <tr class="even">
-<td>Unrelated + Grouping</td>
-<td><span class="math inline">\(y \sim (\mu + \beta_g x_g, \sigma_h^2 H + \sigma_r^2 I)\)</span></td>
-<td><span class="math inline">\(g \sim (\mu_g, \sigma_g^2 I)\)</span></td>
-<td><span class="math inline">\(\frac{1}{\tilde{x_g}^T V^{-1} \tilde{x_g}} \approx \frac{1}{\sigma_g^2 \mbox { } trace(V^{-1})}\)</span></td>
+<td align="left">500</td>
+<td align="right">0.8253</td>
 </tr>
 <tr class="odd">
-<td>Unrelated + GRM</td>
-<td><span class="math inline">\(y \sim (\mu + \beta_g x_g, \sigma_m^2 M + \sigma_r^2 I)\)</span></td>
-<td><span class="math inline">\(g \sim (\mu_g, \sigma_g^2 I)\)</span></td>
-<td><span class="math inline">\(\frac{1}{\tilde{x_g}^T V^{-1} \tilde{x_g}} \approx \frac{1}{\sigma_g^2 \mbox { } trace(V^{-1})}\)</span></td>
+<td align="left">1,000</td>
+<td align="right">0.8253</td>
 </tr>
 <tr class="even">
-<td>Families</td>
-<td><span class="math inline">\(y \sim (\mu + \beta_g x_g, \sigma_k^2 K + \sigma_r^2 I)\)</span></td>
-<td><span class="math inline">\(x_g \sim (\mu_g, \sigma_g^2 K)\)</span></td>
-<td><span class="math inline">\(\frac{1}{\tilde{x_g}^T V^{-1} \tilde{x_g}} \approx \frac{1}{\sigma_g^2 \mbox { } trace(V^{-1} K)}\)</span></td>
+<td align="left">2,000</td>
+<td align="right">0.8253</td>
 </tr>
 </tbody>
 </table>
-<p>Table Legend: Study designs differ in individual relationships that affect modeling an outcome (<span class="math inline">\(y\)</span>) and distribution of genotype under association test (<span class="math inline">\(x_g\)</span>). The statistical power to detect an association depends on the non-centrality parameter <span class="math inline">\(NCP = \hat{\beta}_g^2 / var(\hat{\beta}_g)\)</span> and, thus, the formula for variance of <span class="math inline">\(\hat{\beta}_g\)</span> is reported for each study. Study designs under comparison include: unrelated individuals; unrelated individuals with a non-genetic grouping factor such as medical centers; unrelated individuals with modeling outcome conditioned on genetic effects using Genetic Relationship Matrix (GRM); related individuals in families.</p>
-<p><img src="figures/01-figure-power-marginal.png" width="100%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="implication-in-association-studies" class="section level3">
-<h3><span class="header-section-number">1.2.2</span> Implication in association studies</h3>
+<div id="unrelated-interaction-effect" class="section level3">
+<h3><span class="header-section-number">2.1.3</span> Unrelated: interaction effect</h3>
+<p><img src="bookdown_files/figure-html/se_unrel_int-1.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="familes-random-exposure-interaction-effect" class="section level3">
+<h3><span class="header-section-number">2.1.4</span> Familes (random exposure): interaction effect</h3>
+<p><img src="bookdown_files/figure-html/se_fam_int-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Sample Size</th>
+<th align="right">Trace Factor</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">100</td>
+<td align="right">1.2759</td>
+</tr>
+<tr class="even">
+<td align="left">500</td>
+<td align="right">1.2858</td>
+</tr>
+<tr class="odd">
+<td align="left">1,000</td>
+<td align="right">1.2757</td>
+</tr>
+<tr class="even">
+<td align="left">2,000</td>
+<td align="right">1.2506</td>
+</tr>
+</tbody>
+</table>
 
 </div>
-</div>
-</div>
-<h3>References</h3>
-<div id="refs" class="references">
-<div id="ref-loh2018mixed">
-<p>Loh, Po-Ru, Gleb Kichaev, Steven Gazal, Armin P Schoech, and Alkes L Price. 2018. “Mixed-Model Association for Biobank-Scale Datasets.” <em>Nature Genetics</em>. Nature Publishing Group, 1.</p>
-</div>
-<div id="ref-young2016multiple">
-<p>Young, Alexander I, Fabian Wauthier, and Peter Donnelly. 2016. “Multiple Novel Gene-by-Environment Interactions Modify the Effect of Fto Variants on Body Mass Index.” <em>Nature Communications</em> 7. Nature Publishing Group:12724.</p>
 </div>
 </div>
             </section>
@@ -297,8 +247,8 @@ which was previously shown analytically only for sib-pairs in (Visscher et al., 
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="supplementary-material.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="manuscript.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
