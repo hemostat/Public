@@ -25,7 +25,7 @@
 <meta name="author" content="Andrey Ziyatdinov">
 
 
-<meta name="date" content="2018-08-16">
+<meta name="date" content="2018-08-24">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -185,52 +185,52 @@ which was previously shown analytically only for sib-pairs in (Visscher et al., 
 <h3><span class="header-section-number">1.3.1</span> Analytical results for testing marginal genetic effect</h3>
 <table>
 <caption><span id="tab:assoc-gen">Table 1.1: </span> Analytical comparison of study designs to detect marginal genetic association.
-Study designs differ in individual relationships that shape modeling of outcome (<span class="math inline">\(y\)</span>) and distribution of genotype under association test (<span class="math inline">\(x_g\)</span>). The statistical power to detect an association depends on the non-centrality parameter <span class="math inline">\(NCP = \hat{\beta}_g^2 / var(\hat{\beta}_g)\)</span> and, thus, the formula for variance of <span class="math inline">\(\hat{\beta}_g\)</span> is reported for each study. Study designs under comparison include: unrelated individuals; unrelated individuals with a non-genetic grouping factor such as medical centers; unrelated individuals with modeling outcome conditioned on genetic effects using Genetic Relationship Matrix (GRM); related individuals in families.</caption>
+Study designs differ in individual relationships that informs modeling of outcome (<span class="math inline">\(y\)</span>) and distribution of genotype under association test (<span class="math inline">\(x_g\)</span>). The statistical power to detect an association depends on the non-centrality parameter <span class="math inline">\(NCP = \hat{\beta}_g^2 / var(\hat{\beta}_g)\)</span> and, thus, the formula for variance of <span class="math inline">\(\hat{\beta}_g\)</span> is reported for each study. Study designs under comparison include: unrelated individuals; unrelated individuals with a grouping factor such as house-hold (not related to a variable under test); unrelated individuals with modeling outcome conditioned on genetic effects using Genetic Relationship Matrix (GRM); related individuals in families. Notation: <span class="math inline">\(\tilde{x_g}\)</span>, mean-centered genotype vector <span class="math inline">\(x_g\)</span>; <span class="math inline">\(\delta_g^2 = 2 p (1 - p)\)</span>, the variance of genotype random variable with the minor allele frequency <span class="math inline">\(p\)</span>; <span class="math inline">\(K\)</span>, the additive kinship matrix for family-based study design.</caption>
 <colgroup>
-<col width="25%" />
-<col width="25%" />
-<col width="25%" />
-<col width="25%" />
+<col width="23%" />
+<col width="15%" />
+<col width="15%" />
+<col width="46%" />
 </colgroup>
 <thead>
 <tr class="header">
-<th>Study</th>
-<th>Model <span class="math inline">\(y \sim (X \beta, V)\)</span></th>
-<th>Genotype <span class="math inline">\(x_g\)</span></th>
-<th>Variance of <span class="math inline">\(\hat{\beta_g}\)</span></th>
+<th>Study design</th>
+<th><span class="math inline">\(V = covar(y)\)</span></th>
+<th><span class="math inline">\(\Sigma_g = covar(x_g)\)</span></th>
+<th><span class="math inline">\(1 / var(\hat{\beta}_g)\)</span> from <span class="math inline">\(y \sim \mathcal{N}(\mu + \beta_g x_g, V)\)</span></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td>Unrelated</td>
-<td><span class="math inline">\(y \sim (\mu + \beta_g x_g, \sigma_r^2 I)\)</span></td>
-<td><span class="math inline">\(x_g \sim (\mu_g, \sigma_g^2 I)\)</span></td>
-<td><span class="math inline">\(\frac{\sigma_r^2}{\tilde{x_g}^T \tilde{x_g}} \approx \frac{\sigma_r^2}{\sigma_g^2 N }\)</span></td>
+<td><span class="math inline">\(\sigma_r^2 I\)</span></td>
+<td><span class="math inline">\(\delta_g^2 I\)</span></td>
+<td><span class="math inline">\(\tilde{x_g}^T \tilde{x_g} /\sigma_r^2 \approx \delta_g^2 N / \sigma_r^2\)</span></td>
 </tr>
 <tr class="even">
 <td>Unrelated + Grouping</td>
-<td><span class="math inline">\(y \sim (\mu + \beta_g x_g, \sigma_h^2 H + \sigma_r^2 I)\)</span></td>
-<td><span class="math inline">\(g \sim (\mu_g, \sigma_g^2 I)\)</span></td>
-<td><span class="math inline">\(\frac{1}{\tilde{x_g}^T V^{-1} \tilde{x_g}} \approx \frac{1}{\sigma_g^2 \mbox { } trace(V^{-1})}\)</span></td>
+<td><span class="math inline">\(\sigma_h^2 H + \sigma_r^2 I\)</span></td>
+<td><span class="math inline">\(\delta_g^2 I\)</span></td>
+<td><span class="math inline">\(\tilde{x_g}^T V^{-1} \tilde{x_g} \approx \delta_g^2 \mbox { } tr(V^{-1})\)</span></td>
 </tr>
 <tr class="odd">
 <td>Unrelated + GRM</td>
-<td><span class="math inline">\(y \sim (\mu + \beta_g x_g, \sigma_m^2 M + \sigma_r^2 I)\)</span></td>
-<td><span class="math inline">\(g \sim (\mu_g, \sigma_g^2 I)\)</span></td>
-<td><span class="math inline">\(\frac{1}{\tilde{x_g}^T V^{-1} \tilde{x_g}} \approx \frac{1}{\sigma_g^2 \mbox { } trace(V^{-1})}\)</span></td>
+<td><span class="math inline">\(\sigma_m^2 M + \sigma_r^2 I\)</span></td>
+<td><span class="math inline">\(\delta_g^2 I\)</span></td>
+<td><span class="math inline">\(\tilde{x_g}^T V^{-1} \tilde{x_g} \approx \delta_g^2 \mbox { } tr(V^{-1})\)</span></td>
 </tr>
 <tr class="even">
 <td>Families</td>
-<td><span class="math inline">\(y \sim (\mu + \beta_g x_g, \sigma_k^2 K + \sigma_r^2 I)\)</span></td>
-<td><span class="math inline">\(x_g \sim (\mu_g, \sigma_g^2 K)\)</span></td>
-<td><span class="math inline">\(\frac{1}{\tilde{x_g}^T V^{-1} \tilde{x_g}} \approx \frac{1}{\sigma_g^2 \mbox { } trace(V^{-1} K)}\)</span></td>
+<td><span class="math inline">\(\sigma_k^2 K + \sigma_r^2 I\)</span></td>
+<td><span class="math inline">\(\delta_g^2 K\)</span></td>
+<td><span class="math inline">\(\tilde{x_g}^T V^{-1} \tilde{x_g} \approx \delta_g^2 \mbox { } tr(V^{-1} K)\)</span></td>
 </tr>
 </tbody>
 </table>
 <div class="figure" style="text-align: center"><span id="fig:power-marginal"></span>
-<img src="figures/07-figure-power-marginal-two-panels.png" alt="Comparison of study designs to detect marginal genetic effect." width="75%" />
+<img src="figures/07-figure-power-marginal-two-panels.png" alt="Two study designs with a structured variance components, unrelated individuals with a non-genetic grouping factor and related individuals in families, are compared to the reference study design of unrelated individuals. The performance is evaluated to detect marginal genetic effect under the model \(y \sim \mathcal{N}(\mu + \beta_g x_g, V)\) (see also Table 1.1). To make the study designs comparable, the sum of variance components in the \(V\) matrix is equal to one. (a) The effective size multiplier, estimated as \(tr(V^{-1} \Sigma_g) / n\), depends on the variance explained. (b) When the variance explained fixed to 50% and the sample size varies, Notation: \(n\), the sample size." width="90%" />
 <p class="caption">
-Figure 1.1: Comparison of study designs to detect marginal genetic effect.
+Figure 1.1: Two study designs with a structured variance components, unrelated individuals with a non-genetic grouping factor and related individuals in families, are compared to the reference study design of unrelated individuals. The performance is evaluated to detect marginal genetic effect under the model <span class="math inline">\(y \sim \mathcal{N}(\mu + \beta_g x_g, V)\)</span> (see also Table <a href="manuscript.html#tab:assoc-gen">1.1</a>). To make the study designs comparable, the sum of variance components in the <span class="math inline">\(V\)</span> matrix is equal to one. (a) The effective size multiplier, estimated as <span class="math inline">\(tr(V^{-1} \Sigma_g) / n\)</span>, depends on the variance explained. (b) When the variance explained fixed to 50% and the sample size varies, Notation: <span class="math inline">\(n\)</span>, the sample size.
 </p>
 </div>
 
