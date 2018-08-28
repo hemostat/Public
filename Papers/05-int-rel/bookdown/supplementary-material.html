@@ -25,7 +25,7 @@
 <meta name="author" content="Andrey Ziyatdinov">
 
 
-<meta name="date" content="2018-08-24">
+<meta name="date" content="2018-08-28">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -80,10 +80,12 @@
 </ul></li>
 <li class="chapter" data-level="2" data-path="supplementary-material.html"><a href="supplementary-material.html"><i class="fa fa-check"></i><b>2</b> Supplementary Material</a><ul>
 <li class="chapter" data-level="2.1" data-path="supplementary-material.html"><a href="supplementary-material.html#supplementary-figures"><i class="fa fa-check"></i><b>2.1</b> Supplementary Figures</a></li>
-<li class="chapter" data-level="2.2" data-path="supplementary-material.html"><a href="supplementary-material.html#propositions"><i class="fa fa-check"></i><b>2.2</b> Propositions</a><ul>
-<li class="chapter" data-level="2.2.1" data-path="supplementary-material.html"><a href="supplementary-material.html#quadratic-forms"><i class="fa fa-check"></i><b>2.2.1</b> Quadratic forms</a></li>
+<li class="chapter" data-level="2.2" data-path="supplementary-material.html"><a href="supplementary-material.html#propositions"><i class="fa fa-check"></i><b>2.2</b> Propositions</a></li>
+<li class="chapter" data-level="2.3" data-path="supplementary-material.html"><a href="supplementary-material.html#derivations"><i class="fa fa-check"></i><b>2.3</b> Analytical derivations</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="supplementary-material.html"><a href="supplementary-material.html#testing-marginal-genetic-effect-in-unrelated-individuals"><i class="fa fa-check"></i><b>2.3.1</b> Testing marginal genetic effect in unrelated individuals</a></li>
+<li class="chapter" data-level="2.3.2" data-path="supplementary-material.html"><a href="supplementary-material.html#testing-marginal-genetic-effect-in-related-individuals"><i class="fa fa-check"></i><b>2.3.2</b> Testing marginal genetic effect in related individuals</a></li>
+<li class="chapter" data-level="2.3.3" data-path="supplementary-material.html"><a href="supplementary-material.html#testing-gene-environment-interaction-effect-in-unrelated-individuals"><i class="fa fa-check"></i><b>2.3.3</b> Testing gene-environment interaction effect in unrelated individuals</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="supplementary-material.html"><a href="supplementary-material.html#derivations"><i class="fa fa-check"></i><b>2.3</b> Analytical derivations</a></li>
 <li class="chapter" data-level="2.4" data-path="supplementary-material.html"><a href="supplementary-material.html#simulations"><i class="fa fa-check"></i><b>2.4</b> Simulations</a><ul>
 <li class="chapter" data-level="2.4.1" data-path="supplementary-material.html"><a href="supplementary-material.html#unrelated-marginal-genetic-effect"><i class="fa fa-check"></i><b>2.4.1</b> Unrelated: marginal genetic effect</a></li>
 <li class="chapter" data-level="2.4.2" data-path="supplementary-material.html"><a href="supplementary-material.html#families-marginal-genetic-effect"><i class="fa fa-check"></i><b>2.4.2</b> Families: marginal genetic effect</a></li>
@@ -138,34 +140,207 @@ Figure 2.3: Influence of GxE variance component to detect interaction effect.
 </div>
 <div id="propositions" class="section level2">
 <h2><span class="header-section-number">2.2</span> Propositions</h2>
-<div id="quadratic-forms" class="section level3">
-<h3><span class="header-section-number">2.2.1</span> Quadratic forms</h3>
-<p>If <span class="math inline">\(x\)</span> is a vector of random variables,
-then the quadratic form <span class="math inline">\(x^TAx\)</span> is a scalar random variable.</p>
-<p>If <span class="math inline">\(x\)</span> has mean <span class="math inline">\(\mu\)</span> and (nonsingular) covariance matrix <span class="math inline">\(V\)</span>, then</p>
-<p><span class="math display">\[E(x^TAx) = tr(AV) + \mu^T A \mu\]</span></p>
-<p><span class="math display">\[\sigma^2(x^TAx) = 2tr(AVAV) + 4\mu AVA \mu\]</span></p>
+<p><strong>Quadratic form</strong>: If <span class="math inline">\(\mathcal{X}\)</span> is a vector of random variables
+with mean <span class="math inline">\(\mu\)</span> and (nonsingular) covariance matrix <span class="math inline">\(\Sigma\)</span>,
+then the quadratic form <span class="math inline">\(\mathcal{X}^T A \mathcal{X}\)</span> is a scalar random variable:</p>
+<span class="math display" id="eq:quadform1">\[\begin{equation} 
+E(\mathcal{X}^T A \mathcal{X}) = tr(A\Sigma) + \mu^T \Sigma \mu
+\tag{2.1}
+\end{equation}\]</span>
+<span class="math display" id="eq:quadform2">\[\begin{equation} 
+Var(\mathcal{X}^T A \mathcal{X}) = 2tr(A \Sigma A \Sigma) + 4\mu A \Sigma A \mu
+\tag{2.2}
+\end{equation}\]</span>
 <p>See <span class="citation">(Lynch and Walsh <a href="#ref-Lynch1998">1998</a>, Appendix 3, pp. 843)</span> for more details.</p>
-</div>
+<p><strong>A linear transform of a random vector</strong>: If <span class="math inline">\(B\)</span> is a constant matrix and
+<span class="math inline">\(\mathcal{X}\)</span> is a vector of random variables
+with mean <span class="math inline">\(\mu\)</span> and covariance matrix <span class="math inline">\(\Sigma\)</span>,
+then <span class="math inline">\(B \mathcal{X}\)</span> is a vector of random variables:</p>
+<span class="math display" id="eq:matvec1">\[\begin{equation} 
+E(B \mathcal{X}) = B E(\mathcal{X})
+\tag{2.3}
+\end{equation}\]</span>
+<span class="math display" id="eq:matvec2">\[\begin{equation} 
+Var(B \mathcal{X}) = B Var(\mathcal{X}) B^T
+\tag{2.4}
+\end{equation}\]</span>
+<p>The proof makes use of definitions of mean and variance.</p>
 </div>
 <div id="derivations" class="section level2">
 <h2><span class="header-section-number">2.3</span> Analytical derivations</h2>
-<span class="math display" id="eq:assoc">\[\begin{equation} 
-  y \sim \mathcal{N} (X \beta, V) = \mathcal{N} (\mu x_0 + \beta_x x, \sum{\sigma_i^2 R_i} + \sigma_r^2 I)
-\tag{1.1}
+<p>To study the impact of relatedness among individuals on modeling a continuous phenotype <span class="math inline">\(y\)</span>,
+we consider the following linear mixed model:</p>
+<span class="math display" id="eq:lmm">\[\begin{equation} 
+  y = X \beta + \sum_{k=1}^{m}{r_k} + e
+\tag{2.5}
 \end{equation}\]</span>
-<span class="math display" id="eq:vhat">\[\begin{equation} 
-  \hat{V} = \sum{\hat{\sigma}_i^2 R_i} + \hat{\sigma}_r^2 I
-\tag{2.1}
+<p>where <span class="math inline">\(n\)</span> is the number of individuals,
+<span class="math inline">\(p\)</span> is the number of covariates or fixed effects,
+<span class="math inline">\(m\)</span> is the number of structured random effects apart from the residuals errors,
+<span class="math inline">\(y\)</span> is a phenotype vector of length <span class="math inline">\(n\)</span>,
+<span class="math inline">\(X\)</span> is a matrix of covariates of size <span class="math inline">\(n \times p\)</span>,
+<span class="math inline">\(\beta\)</span> is a vector of fixed effects of length <span class="math inline">\(p\)</span>.
+The vectors of random effects <span class="math inline">\(r_k\)</span> and <span class="math inline">\(e\)</span>
+are mutually uncorrelated and
+multivariate normally distributed
+as <span class="math inline">\(\mathcal{N}(0, \sigma^2_k R_k)\)</span> and <span class="math inline">\(\mathcal{N}(0, \sigma^2_r I)\)</span>.
+The variance-covariance matrices are parametrized with scalar parameters
+and constant matrices of size <span class="math inline">\(n \times n\)</span>
+that express relationships among <span class="math inline">\(n\)</span> individuals.
+The first <span class="math inline">\(m\)</span> random effects <span class="math inline">\(r_k\)</span> are referred here as structured,
+whereas the last component <span class="math inline">\(e\)</span> is simply the residual errors
+which are independent and identically distributed.</p>
+<p>Thus, the phenotype follows a multivariate normal distribution (MVN)
+and Equation <a href="supplementary-material.html#eq:lmm">(2.5)</a> can be rewritten:</p>
+<span class="math display" id="eq:mvn">\[\begin{equation} 
+  y \sim \mathcal{N} (X \beta, V) = \mathcal{N} (X \beta, \sum_{k=1}^{m}{\sigma_k^2 R_k} + \sigma_r^2 I) 
+\tag{2.6}
 \end{equation}\]</span>
-<span class="math display" id="eq:assoctr">\[\begin{equation} 
+<p>We further consider several parameterizations of the model in Equation <a href="supplementary-material.html#eq:mvn">(2.6)</a>
+that depend on (i) whether marginal genetic or gene-environment interaction effect is under testing;
+(ii) whether structured random effects are included or only the residual errors.
+Consequently, the composition of fixed and random effects
+are updated accordingly via the matrices <span class="math inline">\(X\)</span> and <span class="math inline">\(V\)</span>, respectively.</p>
+<div id="testing-marginal-genetic-effect-in-unrelated-individuals" class="section level3">
+<h3><span class="header-section-number">2.3.1</span> Testing marginal genetic effect in unrelated individuals</h3>
+<span class="math display" id="eq:lmg">\[\begin{equation} 
+  y \sim \mathcal{N} (X \beta, V) = \mathcal{N} (\mu x_0 + \beta_g x_g, \sigma_r^2 I) 
+\tag{2.7}
+\end{equation}\]</span>
+<p>where <span class="math inline">\(x_0 = 1_n\)</span> is a vector of <span class="math inline">\(n\)</span> ones,
+<span class="math inline">\(\mu\)</span> is a mean of the phenotypic values,
+<span class="math inline">\(x_g\)</span> is a vector of length of the genotypic values,
+<span class="math inline">\(\beta_g\)</span> is the effect size of the genotype.</p>
+<p>The ordinary least squares (OLS) solution for fixed effects is the following in the matrix form,
+<span class="math inline">\(\hat{\beta} = (X^T X)^{-1} X y\)</span>. Further, the effect <span class="math inline">\(\beta_g\)</span> can be estimated separately from the mean effect <span class="math inline">\(\mu\)</span> if vectors <span class="math inline">\(y\)</span> and <span class="math inline">\(x_g\)</span> are centered and, thus, the two vectors are uncorrelated. Hence, the estimated effect is expressed as <span class="math inline">\(\hat{\beta_g} = (\tilde{x}_g^T \tilde{x}_g)^{-1} \tilde{x}_g \tilde{y}\)</span>, where <span class="math inline">\(\tilde{x}_g\)</span> and <span class="math inline">\(\tilde{y}\)</span> are centered vectors <span class="math inline">\(x_g\)</span> and <span class="math inline">\(y\)</span>, respectively. The variance of the estimate is <span class="math inline">\(var(\hat{\beta_g}) = \sigma_r^2 / (\tilde{x}_g^T \tilde{x}_g)\)</span> and the final expression is the following:</p>
+<span class="math display" id="eq:betahatlmg">\[\begin{equation} 
+  \hat{\beta}_g  = (\tilde{x}_g^T \tilde{x}_g)^{-1} \tilde{x}_g^T \tilde{y} \sim \mathcal{N} (\beta_g, \sigma_r^2 / (\tilde{x}_g^T \tilde{x}_g))
+\tag{2.8}
+\end{equation}\]</span>
+<p>We next approximate the expression <span class="math inline">\(\tilde{x}_g^T \tilde{x}_g\)</span> taking into account that <span class="math inline">\(x_g\)</span> is a realization of a vector of random variables <span class="math inline">\(\mathcal{X_g}\)</span>, which is a genotype with a minor allele frequency <span class="math inline">\(p\)</span> in <span class="math inline">\(n\)</span> unrelated individuals. Consequently, the true mean and variance are the following,
+<span class="math inline">\(E(\mathcal{X_g}) = p 1_n\)</span> and <span class="math inline">\(Var(\mathcal{X_g}) = \delta_g^2 I = 2 p (1-p) I\)</span>, where <span class="math inline">\(I\)</span> is the identity matrix of size <span class="math inline">\(n \times n\)</span>. Applying the results in Equation <a href="supplementary-material.html#eq:quadform2">(2.2)</a> for quadratic forms to a centered random variable <span class="math inline">\(\mathcal{\tilde{X}_g}\)</span> gives us the approximation:</p>
+<span class="math display" id="eq:varbetahatlmg">\[\begin{equation} 
+\tilde{x}_g^T \tilde{x}_g \approx E(\mathcal{\tilde{X}_g}^T \mathcal{\tilde{X}_g}) = tr(\delta_g^2 I) = \delta_g^2 n = 2 p (1 - p) n
+\tag{2.9}
+\end{equation}\]</span>
+<p>The NCP parameter for testing the marginal genetic effect is approximated as following:</p>
+<span class="math display" id="eq:ncplmg">\[\begin{equation} 
+NCP_{unrel} = \hat{\beta}_g^2 / var(\hat{\beta}_g) = \hat{\beta}_g^2 \delta_g^2 n / \sigma_r^2 = \hat{\beta}_g^2 2 p (1 - p) n / \sigma_r^2
+\tag{2.10}
+\end{equation}\]</span>
+</div>
+<div id="testing-marginal-genetic-effect-in-related-individuals" class="section level3">
+<h3><span class="header-section-number">2.3.2</span> Testing marginal genetic effect in related individuals</h3>
+<span class="math display" id="eq:lmmg">\[\begin{equation} 
+  y \sim \mathcal{N} (X \beta, V) = \mathcal{N} (\mu x_0 + \beta_g x_g, \sum_{k=1}^{m}{\sigma_k^2 R_k} + \sigma_r^2 I) 
+\tag{2.11}
+\end{equation}\]</span>
+<p>The initial step in solving a linear mixed model is to estimate random effects parameters
+(<span class="math inline">\(\sigma_k^2\)</span> and <span class="math inline">\(\sigma_r^2\)</span>) by maximum likelihood (ML), restricted maximum likelihood (REML) or other optimization technique <span class="citation">(Lynch and Walsh <a href="#ref-Lynch1998">1998</a>)</span>.
+Once the estimate of the variance-covariance matrix is found,
+<span class="math inline">\(\hat{V} = \sum{\hat{\sigma}_i^2 R_i} + \hat{\sigma}_r^2 I\)</span>,
+the generalized least squares (GLS) solution for fixed effects is applied in the following matrix form, <span class="math inline">\(\hat{\beta} = (X^T \hat{V}^{-1} X)^{-1} X \hat{V}^{-1} y\)</span>.
+This solution is obvious if both parts of Equation <a href="supplementary-material.html#eq:lmmg">(2.11)</a> are multiplied by <span class="math inline">\(\hat{V}^{-0.5}\)</span>, thus removing the correlation structure in the random part.</p>
+<span class="math display" id="eq:lmmg2">\[\begin{equation} 
   \hat{V}^{-0.5} y \sim \mathcal{N} (\mu \hat{V}^{-0.5} x_0 + \beta_x \hat{V}^{-0.5} x , I)
-\tag{2.2}
+\tag{2.12}
 \end{equation}\]</span>
-<span class="math display" id="eq:betahat">\[\begin{equation} 
-  \hat{\beta}_x  = (x^T \hat{V}^{-1} x)^{-1} x^T \hat{V}^{-1} y \sim \mathcal{N} (\beta , (x^T \hat{V}^{-1} x)^{-1})
-\tag{2.3}
+<p>The expression for the genetic effect estimate is obtained similarly to Equation <a href="supplementary-material.html#eq:betahatlmg">(2.8)</a> and working with centered vectors:</p>
+<span class="math display" id="eq:betahatlmmg">\[\begin{equation} 
+  \hat{\beta}_g  = (\tilde{x}_g^T \hat{V}^{-1} \tilde{x}_g)^{-1} \tilde{x}_g^T \hat{V}^{-1} \tilde{y} \sim \mathcal{N} (\beta_g, 1 / (\tilde{x}_g^T \hat{V}^{-1} \tilde{x}_g))
+\tag{2.13}
 \end{equation}\]</span>
+<p>We further again consider the quadratic form <span class="math inline">\(\tilde{x}_g^T \hat{V}^{-1} \tilde{x}_g\)</span> and use its mean for approximation, as shown in Equation <a href="supplementary-material.html#eq:quadform2">(2.2)</a>. A vector <span class="math inline">\(x_g\)</span> of the genotypic values is a realization of a vector of random variables <span class="math inline">\(\mathcal{X_g} \sim (\mu_g, \Sigma_g) = (p 1_n, 2 p (1 - p) K) = (p 1_n, \delta_g^2 K)\)</span>, where <span class="math inline">\(p\)</span> is a minor allele frequency of the genotype and <span class="math inline">\(K\)</span> is the kinship matrix of size <span class="math inline">\(n \times n\)</span> that expresses the genetic relatedness among <span class="math inline">\(n\)</span> individuals.</p>
+<p>Treating the matrix <span class="math inline">\(\hat{V}^{-1}\)</span> as a transformation matrix for a quadratic form for a centered random variable <span class="math inline">\(\mathcal{\tilde{X}_g}\)</span> gives us the approximation:</p>
+<span class="math display" id="eq:varbetahatlmmg">\[\begin{equation} 
+\tilde{x}_g^T \hat{V}^{-1} \tilde{x}_g \approx E(\mathcal{\tilde{X}_g}^T \hat{V}^{-1} \mathcal{\tilde{X}_g}) = tr(\hat{V}^{-1} \Sigma_g) = \delta_g^2 tr(\hat{V}^{-1} K) = 2 p (1 - p) tr(\hat{V}^{-1} K)
+\tag{2.14}
+\end{equation}\]</span>
+<p>The NCP parameter for testing the marginal genetic effect is approximated as following:</p>
+<span class="math display" id="eq:ncplmg">\[\begin{equation} 
+NCP_{rel} = \hat{\beta}_g^2 / var(\hat{\beta}_g) = \hat{\beta}_g^2 tr(\hat{V}^{-1} \Sigma_g) = \hat{\beta}_g^2 \delta_g^2 tr(\hat{V}^{-1} K) = \hat{\beta}_g^2 2 p (1 - p) tr(\hat{V}^{-1} K)
+\tag{2.10}
+\end{equation}\]</span>
+<p>Furthermore, we can derive the formula for ratio between <span class="math inline">\(NCP_{rel}\)</span> and <span class="math inline">\(NCP_{unrel}\)</span>, as referred herein the effective size multiplier. If (i) the variance of the phenotype <span class="math inline">\(y\)</span> is scaled to 1, (ii) the effect of the genotype <span class="math inline">\(\beta_g\)</span> is the same across study designs, and (iii) the variance captured by the genotype is small, then we can approximate <span class="math inline">\(\sigma_r^2 \approx 1\)</span> in Equation <a href="supplementary-material.html#eq:ncplmg">(2.10)</a> and further obtain:</p>
+<span class="math display" id="eq:ncpratio">\[\begin{equation} 
+NCP_{rel} / NCP_{unrel} =  tr(\hat{V}^{-1} \Sigma_g) / (\delta_g^2 n) = tr(\hat{V}^{-1} K) / n
+\tag{2.15}
+\end{equation}\]</span>
+</div>
+<div id="testing-gene-environment-interaction-effect-in-unrelated-individuals" class="section level3">
+<h3><span class="header-section-number">2.3.3</span> Testing gene-environment interaction effect in unrelated individuals</h3>
+<span class="math display" id="eq:lmge">\[\begin{equation} 
+  y \sim \mathcal{N} (X \beta, V) = \mathcal{N} (\mu x_0 + \beta_g x_g + \beta_e x_e + \beta_{ge} x_{ge}, \sigma_r^2 I) 
+\tag{2.16}
+\end{equation}\]</span>
+<p>where <span class="math inline">\(x_0 = 1_n\)</span> is a vector of <span class="math inline">\(n\)</span> ones,
+<span class="math inline">\(\mu\)</span> is a mean of the phenotypic values,
+<span class="math inline">\(x_g\)</span> is a genotype vector of length <span class="math inline">\(n\)</span>,
+<span class="math inline">\(\beta_g\)</span> is the effect size of the genotype,
+<span class="math inline">\(x_e\)</span> is a environment exposure vector of length <span class="math inline">\(n\)</span>,
+<span class="math inline">\(\beta_e\)</span> is the effect size of the environment exposure,
+<span class="math inline">\(x_{ge}\)</span> is a vector of length <span class="math inline">\(n\)</span> of gene-environment interaction,
+<span class="math inline">\(\beta_{ge}\)</span> is the interaction effect size.</p>
+<p>The coding scheme of the genotypic and environmental variables to study gene-environment interaction under the standard linear model has been reviewed elsewhere <span class="citation">(Aschard <a href="#ref-Aschard2016">2016</a>)</span>. Here, we work with centered variables <span class="math inline">\(\tilde{x}_g\)</span> and <span class="math inline">\(\tilde{x}_e\)</span>, and define the interaction variable <span class="math inline">\(\tilde{x}_{ge}\)</span> by (i) element-wise multiplication of the two variables denoted as <span class="math inline">\(\tilde{x}_g \cdot \tilde{x}_e\)</span>, (ii) centering the resulted product. Hence, the effect size for each variable (columns in <span class="math inline">\(X\)</span>) can be estimated independently from the other variables under assumption that the two random variables of genotype and environmental exposure are independent <span class="citation">(Aschard <a href="#ref-Aschard2016">2016</a>, Appendix C)</span>. Of a note, different coding schemes give different estimates of effect sizes, but the test statistic for gene-environment interaction is the same <span class="citation">(Aschard <a href="#ref-Aschard2016">2016</a>, Appendix B)</span>.</p>
+<p>Therefore, the estimate of interest <span class="math inline">\(\hat{\beta}_{ge}\)</span> has the following distribution:</p>
+<span class="math display" id="eq:betahatlmge">\[\begin{equation} 
+  \hat{\beta}_{ge}  = (\tilde{x}_{ge}^T \tilde{x}_{ge})^{-1} \tilde{x}_{ge}^T \tilde{y} \sim \mathcal{N} (\beta_{ge}, \sigma_r^2 / (\tilde{x}_{ge}^T \tilde{x}_{ge}))
+\tag{2.17}
+\end{equation}\]</span>
+<p>To further approximate the quantity <span class="math inline">\(\tilde{x}_{ge}^T \tilde{x}_{ge}\)</span>, we consider the following random variables and their realizations: (i) <span class="math inline">\(\tilde{x}_g\)</span> is a realization of a vector of random variables <span class="math inline">\(\mathcal{\tilde{X}_g} \sim (0, \Sigma_g)\)</span>; (ii) <span class="math inline">\(\tilde{x}_e\)</span> is a realization of a vector of random variables <span class="math inline">\(\mathcal{\tilde{X}_e} \sim (0, \Sigma_e)\)</span>; (iii) a random variable <span class="math inline">\(\mathcal{\tilde{X}}_{ge} |_{\mathcal{\tilde{X}}_{e} = \tilde{x}_e} = \tilde{x}_e \cdot \mathcal{\tilde{X}}_g = \tilde{E} \mathcal{\tilde{X}}_g\)</span> where <span class="math inline">\(\tilde{E} = \mathrm{Diag}(\tilde{x}_e)\)</span> is a diagonal matrix with values equal to those observed in the environmental exposure. The variance of the genotype in <span class="math inline">\(n\)</span> unrelated individuals with a given minor allele frequency <span class="math inline">\(p\)</span> is <span class="math inline">\(Var(\mathcal{\tilde{X}_g}) = \delta_g^2 I = 2 p (1-p) I\)</span>, where <span class="math inline">\(I\)</span> is the identity matrix of size <span class="math inline">\(n \times n\)</span>.</p>
+<p>We also consider a simple case for the environmental exposure when it is binary and the observed frequency of exposure is <span class="math inline">\(f\)</span>. Then the values on diagonal of the matrix <span class="math inline">\(\tilde{E}\)</span> are equal <span class="math inline">\(-f\)</span> and <span class="math inline">\(1 - f\)</span>; we denote this matrix as <span class="math inline">\(\tilde{E}_b\)</span>. For an illustration example, the <span class="math inline">\(\tilde{E}_b\)</span> matrix for 5 individuals with the first two unexposed and the last three exposed to the environment, i.e. <span class="math inline">\(f = 0.6\)</span> has the following form:</p>
+<span class="math display">\[\begin{equation*} 
+\tilde{E}_b = 
+\left(\begin{array}{ccccc}
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 1 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 1 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 1\\
+\end{array}\right)
+- 
+\left(\begin{array}{c}
+0.6 \\
+0.6 \\
+0.6 \\
+0.6 \\
+0.6 \\
+\end{array}\right)
+= 
+\left(\begin{array}{ccccc}
+-0.6 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; -0.6 &amp; 0 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0.4 &amp; 0 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0.4 &amp; 0\\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0.4\\
+\end{array}\right)
+\end{equation*}\]</span>
+<p>We need to derive the variance of the random variable <span class="math inline">\(\mathcal{\tilde{X}}_{ge} |_{\mathcal{\tilde{X}}_{e} = \tilde{x}_e}\)</span>. From Equation <a href="supplementary-material.html#eq:matvec2">(2.4)</a> we obtain:</p>
+<span class="math display" id="eq:xgevar">\[\begin{equation} 
+\mathrm{Var}(\mathcal{\tilde{X}}_{ge} |_{\mathcal{\tilde{X}}_{e} = \tilde{x}_e}) = \mathrm{Var}(\tilde{E} \mathcal{\tilde{X}}_g) = \tilde{E} \mathrm{Var}(\mathcal{\tilde{X}}_g) \tilde{E}^T = \tilde{E} (\delta_g^2 I) \tilde{E}^T = \delta_g^2 \tilde{E} \tilde{E}^T = \delta_g^2 \tilde{E}^2 
+\tag{2.18}
+\end{equation}\]</span>
+<p>Applying the results in Equation <a href="supplementary-material.html#eq:quadform2">(2.2)</a> for quadratic forms to a centered random variable <span class="math inline">\(\mathcal{\tilde{X}}_{ge} |_{\mathcal{\tilde{X}}_{e} = \tilde{x}_e}\)</span> gives us the approximation:</p>
+<span class="math display" id="eq:varbetahatlmg">\[\begin{equation} 
+\tilde{x}_{ge}^T \tilde{x}_{ge} \approx E(\mathcal{\tilde{X}}_{ge}^T |_{\mathcal{\tilde{X}}_{e} = \tilde{x}_e} \mathcal{\tilde{X}}_{ge} |_{\mathcal{\tilde{X}}_{e} = \tilde{x}_e}) = tr(\delta_g^2 \tilde{E}^2) = \delta_g^2 tr(\tilde{E}^2) = 2 p (1 - p) tr(\tilde{E}^2)
+\tag{2.9}
+\end{equation}\]</span>
+<p>When the exposure is binary, we can simplify this quantity using the following <span class="math inline">\(tr(\tilde{E}_b) = f (1 - f) n\)</span>:</p>
+<span class="math display" id="eq:varbetahatlmgbin">\[\begin{equation} 
+\tilde{x}_{ge}^T \tilde{x}_{ge} \approx \delta_g^2 f (1 - f) n = 2 p (1 - p) f (1 - f) n
+\tag{2.19}
+\end{equation}\]</span>
+<p>The NCP parameter for testing the gene-environment interaction effect is approximated as following:</p>
+<span class="math display" id="eq:ncplmge">\[\begin{equation} 
+NCP_{unrel} = \hat{\beta}_{ge}^2 / var(\hat{\beta}_{ge}) = \hat{\beta}_{ge}^2 \delta_g^2 tr(\tilde{E}^2) / \sigma_r^2 = \hat{\beta}_{ge}^2 2 p (1 - p) tr(\tilde{E}^2) / \sigma_r^2
+\tag{2.20}
+\end{equation}\]</span>
+<p>When the exposure is binary, we have:</p>
+<span class="math display" id="eq:ncplmgebin">\[\begin{equation} 
+NCP_{unrel} = \hat{\beta}_{ge}^2 / var(\hat{\beta}_{ge}) = \hat{\beta}_{ge}^2 \delta_g^2 tr(\tilde{E}_b^2) / \sigma_r^2 = \hat{\beta}_{ge}^2 2 p (1 - p) f (1 - f) n / \sigma_r^2
+\tag{2.21}
+\end{equation}\]</span>
+</div>
 </div>
 <div id="simulations" class="section level2">
 <h2><span class="header-section-number">2.4</span> Simulations</h2>
@@ -274,6 +449,9 @@ then the quadratic form <span class="math inline">\(x^TAx\)</span> is a scalar r
 <div id="refs" class="references">
 <div id="ref-Lynch1998">
 <p>Lynch, Michael, and Bruce Walsh. 1998. <em>Genetics and Analysis of Quantitative Traits</em>. Vol. 1. Sinauer Sunderland.</p>
+</div>
+<div id="ref-Aschard2016">
+<p>Aschard, Hugues. 2016. “A perspective on interaction effects in genetic association studies.” <em>Genetic Epidemiology</em> 40 (8):678–88.</p>
 </div>
 </div>
             </section>
