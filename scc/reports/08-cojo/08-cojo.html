@@ -325,6 +325,7 @@ $(document).ready(function () {
 <li><a href="#cojo-on-locus-2"><span class="toc-section-number">4</span> COJO on Locus 2</a><ul>
 <li><a href="#bad-snps"><span class="toc-section-number">4.1</span> Bad SNPs</a></li>
 </ul></li>
+<li><a href="#recomendations-on-qc-of-summary-stats"><span class="toc-section-number">5</span> Recomendations on QC of summary stats</a></li>
 </ul>
 </div>
 
@@ -1086,6 +1087,21 @@ ped stats and snps stats have been set.
 </tbody>
 </table>
 </div>
+</div>
+<div id="recomendations-on-qc-of-summary-stats" class="section level1">
+<h1><span class="header-section-number">5</span> Recomendations on QC of summary stats</h1>
+<p>Source: <a href="http://bogdan.bioinformatics.ucla.edu/blog/tips-for-formatting-a-lot-of-gwas-summary-association-statistics-data-2/" class="uri">http://bogdan.bioinformatics.ucla.edu/blog/tips-for-formatting-a-lot-of-gwas-summary-association-statistics-data-2/</a></p>
+<p>By step 2, all the freshly downloaded GWAS summary stats file should be in a uniform format that is easy to work with. The next step is to perform quality control on the SNPs, i.e. removing SNPs that can screw up your analyses. We recommend to apply the following 8 filtering steps:</p>
+<ul>
+<li>Remove all non-biallelic SNPs</li>
+<li>Remove all SNPs with strand-ambiguous alleles (SNPs with A/T, C/G alleles)</li>
+<li>Removed SNPs without rs IDs, duplicated rs IDs or base pair position.</li>
+<li>Removed SNPs not in 1000 Genomes Project Phase 3 (or any other reference panel that one uses)</li>
+<li>Removed SNPs whose base pair positions or alleles doesn’t match those in 1000GP Phase 3 (or any other reference panel)</li>
+<li>Removed SNPs with imputation INFO less than 0.9 (if INFO is provided)</li>
+<li>Removed all SNPs on chromosome X, Y, and MT</li>
+<li>Removed SNPs with sample size 5 standard deviations away from the mean. (This is to guard against scenarios where some SNPs were genotyped on a specialized genotyping array and have substantial more samples than the rest.)</li>
+</ul>
 </div>
 
 
