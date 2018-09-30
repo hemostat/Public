@@ -19,8 +19,9 @@ Links
   [html](https://hemostat.github.io/Public/Papers/05-int-rel/bookdown/index.html),
   [pdf](https://hemostat.github.io/Public/Papers/05-int-rel/bookdown/gxefam.pdf),
   [docx](https://hemostat.github.io/Public/Papers/05-int-rel/bookdown/gxefam.docx),
-  [md](https://hemostat.github.io/Public/Papers/05-int-rel/bookdown/gxefam.md),
+  [md](https://raw.githubusercontent.com/hemostat/Public/gh-pages/Papers/05-int-rel/bookdown/gxefam.md),
   [tex](https://hemostat.github.io/Public/Papers/05-int-rel/bookdown/gxefam.tex)
+  
   
 
 <!--chapter:end:index.Rmd-->
