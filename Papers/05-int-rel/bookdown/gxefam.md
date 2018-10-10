@@ -1,7 +1,7 @@
 ---
 title: "GxE Fam Project"
 author: "Andrey Ziyatdinov"
-date: "2018-09-30"
+date: "2018-10-10"
 knit: "bookdown::render_book"
 documentclass: book
 bibliography: [gxefam.bib]
@@ -337,7 +337,7 @@ TODO: $V = \sigma^2_k K + \sigma^2_i K^i + \sigma^2_r I$ [@Sul2016]
 
 
 Table: (\#tab:assoc-gen) Analytical comparison of study designs to detect marginal genetic association.
-Study designs differ in individual relationships that informs modeling of outcome ($y$) and distribution of genotype under association test ($x_g$). Study designs under comparison include: unrelated individuals; related individuals in families; unrelated individuals with a grouping factor such as house-hold (not related to a variable under test). Notation: $\tilde{x_g}$, mean-centered genotype vector $x_g$; $\delta_g^2 = 2 p (1 - p)$, the variance of genotype random variable with the minor allele frequency $p$; $K$, the additive kinship matrix for family-based study design; $NCP$, the non-centrality parameter of the test; $\hat{V}$, the estimated variance-covariance matrix of $y$.
+Study designs differ in individual relationships that informs modeling of outcome ($y$) and distribution of genotype under association test ($x_g$). Study designs under comparison include: unrelated individuals; related individuals in families; unrelated individuals with a grouping factor such as house-hold (not related to a variable under test). Notation: $\tilde{x_g}$, mean-centered genotype vector $x_g$; $\delta_g^2 = 2 p (1 - p)$, the variance of genotype random variable with the minor allele frequency $p$; $K$, the additive kinship matrix for family-based study design; $NCP$, the non-centrality parameter of the test; $\hat{V}$, the estimated variance-covariance matrix of $y$. For each study design the sum of variance components ($\sigma^2_{*}$ parameters in the second column) are equal to 1 to make designs comparable.
 
 ![(\#fig:power-marginal)(ref:power-marginal)](figures/07-figure-power-marginal-two-panels.png)
 
@@ -349,14 +349,14 @@ Ref \@ref(fig:power-marginal)
 
 ### Analytical results for testing gene-environment interaction effect
 
-| Study design | $V = Var(y)$ | $\Sigma_{ge} = Var(E \mathcal{\tilde{X}}_g)$  | $NCP$ |
-|------------|-------------|--------------|----------------------------------|
+| Study design | $V = Var(y)$ | $\Sigma_{ge}$  | $NCP$ |
+|--------------|------|-----|---------------------------------|
 | Unrelated | $\sigma_r^2 I$ | $\delta_g^2  E^2$ |  $\beta^2_{ge} (\tilde{x_{ge}}^T \tilde{x_{ge}}) \approx \beta^2_{ge} \delta_g^2 tr(E^2)$ |
-| Unrelated (binary) | $\sigma_r^2 I$ | $\delta_g^2  E_b^2$ |  $\beta^2_{ge} (\tilde{x_{ge}}^T \tilde{x_{ge}}) \approx \beta^2_{ge} \delta_g^2 f (1 -f) n$ |
+| Unrelated (binary exposure) | $\sigma_r^2 I$ | $\delta_g^2  E_b^2$ |  $\beta^2_{ge} (\tilde{x_{ge}}^T \tilde{x_{ge}}) \approx \beta^2_{ge} \delta_g^2 f (1 -f) n$ |
 | Families | $\sigma_k^2 K + \sigma_i^2 K_i + \sigma_r^2 I$ | $\delta_g^2  K_D$ | $\beta^2_{ge} (\tilde{x_{ge}}^T \hat{V}^{-1} \tilde{x_{ge}}) \approx \beta^2_{ge} \delta_g^2 \mbox { } tr(\hat{V}^{-1} K_D)$ | 
 
 
-Table: (\#tab:assoc-ge) Analytical comparison of study designs to detect gene-environment interaction association.
+Table: (\#tab:assoc-ge) Analytical comparison of study designs to detect gene-environment interaction association. Notation: $\Sigma_{ge} = Var(E \mathcal{\tilde{X}}_g)$. For each study design the sum of variance components ($\sigma^2_{*}$ parameters in the second column) are equal to 1 to make designs comparable.
 
 
 ![(\#fig:power-interaction)(ref:power-interaction)](figures/09-figure-power-interaction-expsib-two-panels.png)
@@ -383,6 +383,39 @@ taking ratios of chi-squared statistics computed by BOLT-LMM _vs._ linear regres
 at genome-wide significant variants [@loh2018mixed].
 In our work, we derived an analytical form for the effective size multiplier
 in Equations \@ref(eq:ncpg) and \@ref(eq:ncpggrm).
+
+(ref:ukbiobank) Analytical results on estimation of the effective sample size multiplier under the standard infinitesimal mixed model (denoted in [@loh2018mixed] as BOLT-LMM-inf) are shown for unrelated British individuals in the UKBiobank study. The GRM is calculated on a random subset of 10K individuals; the heritability estimation for all 337K unrelated British individuals are taken from [@loh2018mixed, Supplementary Table 2].
+
+![(\#fig:ukbiobank)(ref:ukbiobank)](figures/10-figure-power-marginal-ukbiobank.png)
+
+
+Trait                     $h^2$   BOLT-LMM-inf   Analytical   Analytical (20 PC)
+-----------------------  ------  -------------  -----------  -------------------
+Height                    0.579           1.37         1.06                 1.06
+Hair color                0.454           1.30         1.04                 1.04
+Platelet count            0.404           1.23         1.03                 1.03
+Bone mineral density      0.401           1.21         1.03                 1.03
+Red blood cell count      0.324           1.14         1.02                 1.02
+FEV1 FVC ratio            0.313           1.13         1.02                 1.02
+Body mass index           0.308           1.14         1.02                 1.02
+RBC distribution width    0.288           1.12         1.02                 1.02
+Forced vital capacity     0.277           1.10         1.02                 1.02
+Eosinophil count          0.277           1.11         1.02                 1.02
+White blood cell count    0.272           1.09         1.02                 1.02
+Blood pressure            0.271           1.13         1.02                 1.02
+Tanning ability           0.242           1.06         1.01                 1.01
+Waist hip ratio           0.210           1.06         1.01                 1.01
+Years of education        0.193           1.02         1.01                 1.01
+Cardiovascular disease    0.160           1.04         1.01                 1.01
+Neuroticism               0.156           1.02         1.01                 1.01
+Chronotype                0.143           1.04         1.01                 1.01
+Smoking status            0.134           1.04         1.01                 1.01
+Allergy or eczema         0.120           1.05         1.00                 1.00
+Hypothyroidism            0.088           1.03         1.00                 1.00
+Respiratory disease       0.086           1.02         1.00                 1.00
+Type 2 diabetes           0.074           1.01         1.00                 1.00
+
+Table: (\#tab:ukbiobank) Results on estimation of the effective size multiplier for selected traits in the UKBiobank study (sorted by their heritability). The empirical estimator of BOLT-LMM-inf is computed only on the genome-wide significant signals [@loh2018mixed].
 
 #### Optimization of study design
 

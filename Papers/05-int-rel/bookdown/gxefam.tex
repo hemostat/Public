@@ -108,7 +108,7 @@
 
 \title{GxE Fam Project}
 \author{Andrey Ziyatdinov}
-\date{2018-09-30}
+\date{2018-10-10}
 
 \begin{document}
 \maketitle
@@ -467,7 +467,9 @@ house-hold (not related to a variable under test). Notation:
 with the minor allele frequency \(p\); \(K\), the additive kinship
 matrix for family-based study design; \(NCP\), the non-centrality
 parameter of the test; \(\hat{V}\), the estimated variance-covariance
-matrix of \(y\).}\tabularnewline
+matrix of \(y\). For each study design the sum of variance components
+(\(\sigma^2_{*}\) parameters in the second column) are equal to 1 to
+make designs comparable.}\tabularnewline
 \toprule
 \begin{minipage}[b]{0.21\columnwidth}\raggedright\strut
 Study design\strut
@@ -558,56 +560,60 @@ effect}\label{analytical-results-for-testing-gene-environment-interaction-effect
 
 \begin{longtable}[]{@{}llll@{}}
 \caption{\label{tab:assoc-ge} Analytical comparison of study designs to
-detect gene-environment interaction association.}\tabularnewline
+detect gene-environment interaction association. Notation:
+\(\Sigma_{ge} = Var(E \mathcal{\tilde{X}}_g)\). For each study design
+the sum of variance components (\(\sigma^2_{*}\) parameters in the
+second column) are equal to 1 to make designs
+comparable.}\tabularnewline
 \toprule
-\begin{minipage}[b]{0.15\columnwidth}\raggedright\strut
+\begin{minipage}[b]{0.18\columnwidth}\raggedright\strut
 Study design\strut
-\end{minipage} & \begin{minipage}[b]{0.16\columnwidth}\raggedright\strut
+\end{minipage} & \begin{minipage}[b]{0.09\columnwidth}\raggedright\strut
 \(V = Var(y)\)\strut
-\end{minipage} & \begin{minipage}[b]{0.17\columnwidth}\raggedright\strut
-\(\Sigma_{ge} = Var(E \mathcal{\tilde{X}}_g)\)\strut
-\end{minipage} & \begin{minipage}[b]{0.40\columnwidth}\raggedright\strut
+\end{minipage} & \begin{minipage}[b]{0.07\columnwidth}\raggedright\strut
+\(\Sigma_{ge}\)\strut
+\end{minipage} & \begin{minipage}[b]{0.42\columnwidth}\raggedright\strut
 \(NCP\)\strut
 \end{minipage}\tabularnewline
 \midrule
 \endfirsthead
 \toprule
-\begin{minipage}[b]{0.15\columnwidth}\raggedright\strut
+\begin{minipage}[b]{0.18\columnwidth}\raggedright\strut
 Study design\strut
-\end{minipage} & \begin{minipage}[b]{0.16\columnwidth}\raggedright\strut
+\end{minipage} & \begin{minipage}[b]{0.09\columnwidth}\raggedright\strut
 \(V = Var(y)\)\strut
-\end{minipage} & \begin{minipage}[b]{0.17\columnwidth}\raggedright\strut
-\(\Sigma_{ge} = Var(E \mathcal{\tilde{X}}_g)\)\strut
-\end{minipage} & \begin{minipage}[b]{0.40\columnwidth}\raggedright\strut
+\end{minipage} & \begin{minipage}[b]{0.07\columnwidth}\raggedright\strut
+\(\Sigma_{ge}\)\strut
+\end{minipage} & \begin{minipage}[b]{0.42\columnwidth}\raggedright\strut
 \(NCP\)\strut
 \end{minipage}\tabularnewline
 \midrule
 \endhead
-\begin{minipage}[t]{0.15\columnwidth}\raggedright\strut
+\begin{minipage}[t]{0.18\columnwidth}\raggedright\strut
 Unrelated\strut
-\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright\strut
+\end{minipage} & \begin{minipage}[t]{0.09\columnwidth}\raggedright\strut
 \(\sigma_r^2 I\)\strut
-\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright\strut
 \(\delta_g^2 E^2\)\strut
-\end{minipage} & \begin{minipage}[t]{0.40\columnwidth}\raggedright\strut
+\end{minipage} & \begin{minipage}[t]{0.42\columnwidth}\raggedright\strut
 \(\beta^2_{ge} (\tilde{x_{ge}}^T \tilde{x_{ge}}) \approx \beta^2_{ge} \delta_g^2 tr(E^2)\)\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.15\columnwidth}\raggedright\strut
-Unrelated (binary)\strut
-\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright\strut
+\begin{minipage}[t]{0.18\columnwidth}\raggedright\strut
+Unrelated (binary exposure)\strut
+\end{minipage} & \begin{minipage}[t]{0.09\columnwidth}\raggedright\strut
 \(\sigma_r^2 I\)\strut
-\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright\strut
 \(\delta_g^2 E_b^2\)\strut
-\end{minipage} & \begin{minipage}[t]{0.40\columnwidth}\raggedright\strut
+\end{minipage} & \begin{minipage}[t]{0.42\columnwidth}\raggedright\strut
 \(\beta^2_{ge} (\tilde{x_{ge}}^T \tilde{x_{ge}}) \approx \beta^2_{ge} \delta_g^2 f (1 -f) n\)\strut
 \end{minipage}\tabularnewline
-\begin{minipage}[t]{0.15\columnwidth}\raggedright\strut
+\begin{minipage}[t]{0.18\columnwidth}\raggedright\strut
 Families\strut
-\end{minipage} & \begin{minipage}[t]{0.16\columnwidth}\raggedright\strut
+\end{minipage} & \begin{minipage}[t]{0.09\columnwidth}\raggedright\strut
 \(\sigma_k^2 K + \sigma_i^2 K_i + \sigma_r^2 I\)\strut
-\end{minipage} & \begin{minipage}[t]{0.17\columnwidth}\raggedright\strut
+\end{minipage} & \begin{minipage}[t]{0.07\columnwidth}\raggedright\strut
 \(\delta_g^2 K_D\)\strut
-\end{minipage} & \begin{minipage}[t]{0.40\columnwidth}\raggedright\strut
+\end{minipage} & \begin{minipage}[t]{0.42\columnwidth}\raggedright\strut
 \(\beta^2_{ge} (\tilde{x_{ge}}^T \hat{V}^{-1} \tilde{x_{ge}}) \approx \beta^2_{ge} \delta_g^2 \mbox { } tr(\hat{V}^{-1} K_D)\)\strut
 \end{minipage}\tabularnewline
 \bottomrule
@@ -654,6 +660,86 @@ multiplier: taking ratios of chi-squared statistics computed by BOLT-LMM
 \citep{loh2018mixed}. In our work, we derived an analytical form for the
 effective size multiplier in Equations \eqref{eq:ncpg} and
 \eqref{eq:ncpggrm}.
+
+
+
+
+
+
+
+
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.75\linewidth]{figures/10-figure-power-marginal-ukbiobank} 
+
+}
+
+\caption{Analytical results on estimation of the effective sample
+size multiplier under the standard infinitesimal mixed model (denoted in
+\citep{loh2018mixed} as BOLT-LMM-inf) are shown for unrelated British
+individuals in the UKBiobank study. The GRM is calculated on a random
+subset of 10K individuals; the heritability estimation for all 337K
+unrelated British individuals are taken from \citep[Supplementary Table
+2]{loh2018mixed}.}\label{fig:ukbiobank}
+\end{figure}
+
+\begin{tabular}{l|r|r|r|r}
+\hline
+Trait & \$h\textasciicircum{}2\$ & BOLT-LMM-inf & Analytical & Analytical (20 PC)\\
+\hline
+Height & 0.579 & 1.37 & 1.06 & 1.06\\
+\hline
+Hair color & 0.454 & 1.30 & 1.04 & 1.04\\
+\hline
+Platelet count & 0.404 & 1.23 & 1.03 & 1.03\\
+\hline
+Bone mineral density & 0.401 & 1.21 & 1.03 & 1.03\\
+\hline
+Red blood cell count & 0.324 & 1.14 & 1.02 & 1.02\\
+\hline
+FEV1 FVC ratio & 0.313 & 1.13 & 1.02 & 1.02\\
+\hline
+Body mass index & 0.308 & 1.14 & 1.02 & 1.02\\
+\hline
+RBC distribution width & 0.288 & 1.12 & 1.02 & 1.02\\
+\hline
+Forced vital capacity & 0.277 & 1.10 & 1.02 & 1.02\\
+\hline
+Eosinophil count & 0.277 & 1.11 & 1.02 & 1.02\\
+\hline
+White blood cell count & 0.272 & 1.09 & 1.02 & 1.02\\
+\hline
+Blood pressure & 0.271 & 1.13 & 1.02 & 1.02\\
+\hline
+Tanning ability & 0.242 & 1.06 & 1.01 & 1.01\\
+\hline
+Waist hip ratio & 0.210 & 1.06 & 1.01 & 1.01\\
+\hline
+Years of education & 0.193 & 1.02 & 1.01 & 1.01\\
+\hline
+Cardiovascular disease & 0.160 & 1.04 & 1.01 & 1.01\\
+\hline
+Neuroticism & 0.156 & 1.02 & 1.01 & 1.01\\
+\hline
+Chronotype & 0.143 & 1.04 & 1.01 & 1.01\\
+\hline
+Smoking status & 0.134 & 1.04 & 1.01 & 1.01\\
+\hline
+Allergy or eczema & 0.120 & 1.05 & 1.00 & 1.00\\
+\hline
+Hypothyroidism & 0.088 & 1.03 & 1.00 & 1.00\\
+\hline
+Respiratory disease & 0.086 & 1.02 & 1.00 & 1.00\\
+\hline
+Type 2 diabetes & 0.074 & 1.01 & 1.00 & 1.00\\
+\hline
+\end{tabular}
+
+Table: \label{tab:ukbiobank} Results on estimation of the effective size
+multiplier for selected traits in the UKBiobank study (sorted by their
+heritability). The empirical estimator of BOLT-LMM-inf is computed only
+on the genome-wide significant signals \citep{loh2018mixed}.
 
 \subsubsection{Optimization of study
 design}\label{optimization-of-study-design}
