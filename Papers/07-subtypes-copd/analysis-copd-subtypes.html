@@ -12,7 +12,7 @@
 
 <meta name="author" content="Andrey Ziyatdinov" />
 
-<meta name="date" content="2019-12-29" />
+<meta name="date" content="2020-01-20" />
 
 <title>Analysis report for Ziyatdinov et al</title>
 
@@ -182,7 +182,7 @@ summary {
 <h1 class="title toc-ignore">Analysis report for Ziyatdinov et al</h1>
 <h3 class="subtitle">Detecting COPD subtypes using multi-trait genetics</h3>
 <h4 class="author">Andrey Ziyatdinov</h4>
-<h4 class="date">2019-12-29</h4>
+<h4 class="date">2020-01-20</h4>
 
 </div>
 
@@ -206,7 +206,8 @@ summary {
 </ul></li>
 </ul></li>
 <li><a href="#copdgene-data">COPDGene data</a><ul>
-<li><a href="#dataset">Dataset</a><ul>
+<li><a href="#dataset">Dataset</a></li>
+<li><a href="#number-of-traits-1">Number of traits</a><ul>
 <li><a href="#traits-per-group">Traits per group</a></li>
 <li><a href="#traits-with-no-covariates">Traits with no covariates</a></li>
 <li><a href="#longitudinal-traits">Longitudinal traits</a></li>
@@ -383,7 +384,7 @@ file_clust &lt;- file.path(dir_data, &quot;clust.rdata&quot;)
 load(file_clust)</code></pre>
 <div id="snp-weights-h" class="section level3">
 <h3>SNP weights (H)</h3>
-<pre class="r"><code>Ht &lt;- getHt(clust)
+<pre class="r"><code>Ht &lt;- t(clust$H.eff)
 Ht_norm &lt;- t(apply(Ht, 1, function(x) x / sum(x)))</code></pre>
 <pre class="r"><code>get_top_snps &lt;- function(w, thr) names(w[w &gt; thr]) 
 
@@ -422,6 +423,13 @@ snps_clust3 &lt;- get_top_snps(Ht_norm[, 3], thr_top_snps)</code></pre>
 <pre class="r"><code>dir_data &lt;- &quot;../data&quot;
 file_dat2 &lt;- file.path(dir_data, &quot;dat2.rdata&quot;) </code></pre>
 <pre class="r"><code>load(file_dat2)</code></pre>
+</div>
+<div id="number-of-traits-1" class="section level2">
+<h2>Number of traits</h2>
+<ul>
+<li>The number of traits in description: 318</li>
+<li>The number of traits in het. tests: 312</li>
+</ul>
 <div id="traits-per-group" class="section level3">
 <h3>Traits per group</h3>
 <pre class="r"><code>pander(desc) </code></pre>
@@ -3659,9 +3667,11 @@ file_dat2 &lt;- file.path(dir_data, &quot;dat2.rdata&quot;) </code></pre>
 <h1>Results: heterogeneity tests</h1>
 <div id="significant-results" class="section level2">
 <h2>Significant results</h2>
-<pre class="r"><code>read_csv(&quot;../tables/09-het-test.csv&quot;) %&gt;% 
-  filter(passed_het) %&gt;% 
-  select(outcome, group, class, mclass, nobs, ncov, p_uwgrs, p_het123, p_int123, wichmin_add, q_het123) %&gt;%
+<pre class="r"><code>het &lt;- read_csv(&quot;../tables/09-het-test.csv&quot;)
+het_passed &lt;- filter(het, passed_het)</code></pre>
+<pre class="r"><code>select(het_passed, 
+    outcome, group, class, mclass, nobs, ncov, 
+    p_uwgrs, p_het123, p_int123, wichmin_add, q_het123) %&gt;%
   arrange(wichmin_add, p_het123) %&gt;% 
   pander</code></pre>
 <table style="width:100%;">
